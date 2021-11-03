@@ -1,6 +1,6 @@
 clear; close all;
 %% Get data
-open_system('Q2_FCC_Block_Diagram');
+% open_system('Q2_FCC_Block_Diagram');
 out = sim('Q2_FCC_Block_Diagram');
 Y1 = squeeze(out.Y1.signals.values);
 Y2 = squeeze(out.Y2.signals.values);
@@ -17,7 +17,7 @@ data = iddata(Y,U,Ts);
 % number of states as given
 Nx = 5;
 Nu = 2;
-ny = 3;
+Ny = 3;
 % Estimate state space
 sys = n4sid(data,Nx,'DisturbanceModel','none','Feedthrough',true(1,Nu));
 %% Part b): Check for OL stability
@@ -27,3 +27,12 @@ poles = eig(sys.A)
 % unit disk so marginally stable
 % confirm it MATLAB
 stability = isstable(sys)
+%% Part c) Obtain transfer functions
+tfs = tf(sys);
+G11 = tf(tfs.NUM(1,1),tfs.DEN(1,1),Ts);
+G12 = tf(tfs.NUM(2,1),tfs.DEN(2,1),Ts);
+G13 = tf(tfs.NUM(3,1),tfs.DEN(3,1),Ts);
+G21 = tf(tfs.NUM(1,2),tfs.DEN(1,2),Ts);
+G22 = tf(tfs.NUM(2,2),tfs.DEN(2,2),Ts);
+G23 = tf(tfs.NUM(3,2),tfs.DEN(3,2),Ts);
+open_system('q2_part_c');
