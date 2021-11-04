@@ -1,4 +1,4 @@
-clear; close all;
+%clear; close all;
 %% Get data
 % open_system('Q2_FCC_Block_Diagram');
 out = sim('Q2_FCC_Block_Diagram');
