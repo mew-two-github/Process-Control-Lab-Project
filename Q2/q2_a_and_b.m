@@ -18,21 +18,21 @@ data = iddata(Y,U,Ts);
 Nx = 5;
 Nu = 2;
 Ny = 3;
-% Estimate state space
-sys = n4sid(data,Nx,'DisturbanceModel','none','Feedthrough',true(1,Nu));
+% Estimate a continous state space model
+sys = n4sid(data,Nx,'DisturbanceModel','none','Feedthrough',true(1,Nu),'Ts',0);
 %% Part b): Check for OL stability
 % Finding poles
 poles = eig(sys.A)
-% We realise that all poles are within the unit disk and 2 are on the
-% unit disk so marginally stable
+% We realise that all poles are within the unit disk and 1 is at zero so
+% marginally stable
 % confirm it MATLAB
 stability = isstable(sys)
 %% Part c) Obtain transfer functions
 tfs = tf(sys);
-G11 = tf(tfs.NUM(1,1),tfs.DEN(1,1),Ts);
-G12 = tf(tfs.NUM(2,1),tfs.DEN(2,1),Ts);
-G13 = tf(tfs.NUM(3,1),tfs.DEN(3,1),Ts);
-G21 = tf(tfs.NUM(1,2),tfs.DEN(1,2),Ts);
-G22 = tf(tfs.NUM(2,2),tfs.DEN(2,2),Ts);
-G23 = tf(tfs.NUM(3,2),tfs.DEN(3,2),Ts);
+G11 = tf(tfs.NUM(1,1),tfs.DEN(1,1));
+G12 = tf(tfs.NUM(2,1),tfs.DEN(2,1));
+G13 = tf(tfs.NUM(3,1),tfs.DEN(3,1));
+G21 = tf(tfs.NUM(1,2),tfs.DEN(1,2));
+G22 = tf(tfs.NUM(2,2),tfs.DEN(2,2));
+G23 = tf(tfs.NUM(3,2),tfs.DEN(3,2));
 open_system('q2_part_c');
