@@ -1,0 +1,3 @@
+P: 196.234263679754
+I: 6.60040719417829e-05
+Switched to Line Search
