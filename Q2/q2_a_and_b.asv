@@ -2,28 +2,22 @@
 close all;
 %% Get data
 % open_system('Q2_FCC_Block_Diagram');
-% out = sim('Q2_FCC_Block_Diagram');
+out = sim('Q2_FCC_Block_Diagram');
 tout = squeeze(out.tout);
 Y1 = squeeze(out.Y1.signals.values);
 Y1 = rescale(Y1);
 lol = smoothdata(Y1);
 lol(1:13300)=Y1(1:13300);
-Y1 = lol;
+Y
 plot(tout,Y1,'LineWidth',2);
 title('Y_1 original'); xlabel('time'); ylabel('Y_1');
 Y2 = squeeze(out.Y2.signals.values);
 Y2 = rescale(Y2);
-% lol = smoothdata(Y2);
-% lol(1:31868)=Y2(1:31868);
-% Y2 = lol;
 figure;
 plot(tout,Y2,'LineWidth',2);
 title('Y_2 original'); xlabel('time'); ylabel('Y_2');
 Y3 = squeeze(out.Y3.signals.values);
 Y3 = rescale(Y3);
-lol = smoothdata(Y3);
-lol(1:14743)=Y3(1:14743);
-Y3 = lol;
 figure;
 plot(tout,Y3,'LineWidth',2);
 title('Y_3 original'); xlabel('time'); ylabel('Y_3');

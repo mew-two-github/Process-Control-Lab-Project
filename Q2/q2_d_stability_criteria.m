@@ -1,4 +1,4 @@
-
+close all;
 %% Initialisation
 Kc = 179.074373920372;
 KI = 5.21380137768688e-05;
@@ -8,15 +8,20 @@ s = tf('s');
 %% RH criterion
 Dr = 1 + G11*Gc;
 %% Root locus
-L = Gm/(s*(1+Kc*Gm));
-% rlocusplot(L,KI);
-% rltool(L);
+L = minreal(Gm/(s*(1+Kc*Gm)));
+rlocusplot(L,KI);
+grid on;
+figure;
+rlocusplot(L)
+%rltool(L);
 %% Bode plot
-CL_sys = (Gm*Gc)/(1+Gm*Gc);
-margin(CL_sys);
+% CL_sys = minreal((Gm*Gc)/(1+Gm*Gc));
+Lg = Gc*Gm;
+figure;
+margin(Lg);
 %% Nyquist Plot
 figure;
-nyquist(KI*L);
+nyquist(Lg);
 hold on;
 n = 500;
 theta = linspace(0,2*pi,n);
