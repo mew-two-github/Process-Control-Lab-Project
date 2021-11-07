@@ -1,12 +1,13 @@
 close all;
 %% Initialisation
-Kc = 179.074373920372;
-KI = 5.21380137768688e-05;
+Kc = 0.0669137468092512;
+KI = 5.31692810242195e-08;
 Gm = G11;
 Gc = tf([Kc KI],[1 0]);
 s = tf('s');
 %% RH criterion
 Dr = 1 + G11*Gc;
+[num,~] = tfdata(Dr,'v');
 %% Root locus
 L = minreal(Gm/(s*(1+Kc*Gm)));
 rlocusplot(L,KI);

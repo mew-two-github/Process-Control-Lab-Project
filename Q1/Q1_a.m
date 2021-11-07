@@ -1,3 +1,4 @@
+clear; close all;
 load('Q1_Output_2x2_Step_Response_Data.mat')
 
 G11U1_iddata = iddata(G11U1.signals.values,U1.signals.values,0.1);

@@ -17,7 +17,7 @@
 %   2007/11/12
 
 %% Initialization
-clear ; close all; clc
+% clear ; close all; clc
 
 
 % Taking coefficients vector and organizing the first two rows
